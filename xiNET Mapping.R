@@ -315,7 +315,7 @@ OrigTable <- OrigTable %>%
     # Swap of Sequences
     `Sequence A` = if_else(swap, `Sequence B`, `Sequence A`),
     `Sequence B` = if_else(swap, swap.SeqA, `Sequence B`),
-    # Midififations
+    # Modififations
     `Modifications A` = if_else(swap, `Modifications B`, `Modifications A`),
     `Modifications B` = if_else(swap, swap.ModA, `Modifications B`),
     # Xl position
@@ -1282,3 +1282,4 @@ print("The analysis has finished :D")
 closeAllConnections()
 rm(list = ls())
 gc()
+
