@@ -1,11 +1,10 @@
-
-
 ###############################################################
-#  Crosslink Analyzer for Xinet _ Proteome Disocover / Plink  #
+#  Crosslink Analyzer for XiNET / Proteome Discoverer / pLink #
 ###############################################################
 
-
-#Activation of libraries
+# =======================
+# 📦 Load Required Libraries
+# =======================
 library(tidyverse)
 library(dplyr)
 library(Biostrings)
@@ -15,52 +14,79 @@ library(seqinr)
 library(readr)
 library(purrr)
 
+# =======================
+# 📁 User Configuration
+# =======================
 
-#Directory of Archives:
-setwd('M:/ACADEMIC/YourPath/NPQ_Curves_XiNET')
+# 👉 Set your working directory (project folder)
+# Example: "~/projects/crosslink-analysis"
+setwd("path/to/your/project_directory")
 
-#Directory of database:
-Database<-'YourDataBase.fasta'
+# 👉 Path to FASTA database file
+database_path <- "path/to/your/database.fasta"
 
-#Directory of files:
-File<-'Input_Crosslink'
+# 👉 Input directory containing crosslink files
+input_dir <- "path/to/your/input_files"
 
-#Output for Files:
-#Final archive localization:
-Output_file<-'XL-Analysis'
+# 👉 Output directory (will be created if it doesn't exist)
+output_dir <- "path/to/output_directory"
 
-#Name of final files:
-Name_Output<-'Xinet_crosslink'
+# 👉 Output file prefix
+output_prefix <- "crosslink_analysis"
 
-#------------------------------------------#
-#Is a PLink file?: 'Yes'/'No'(PD)
-PLink <- 'No'
+# =======================
+# ⚙️ Analysis Parameters
+# =======================
 
-#Filter at beginning by Score? 'Yes'/'No'
-Filtering<-'Yes'
+# 👉 Input file type: "PLink" or "ProteomeDiscoverer"
+is_plink <- FALSE
 
-Min_Score<-40
+# 👉 Enable score filtering
+enable_filtering <- TRUE
 
-#Filter by cross links repeated in replicas by treatments or in total? 'Treatment'/'Total'
-Replicas_in<-'Treatment'
+# 👉 Minimum score threshold
+min_score <- 40
 
-#How many replicas ?
-Minimun_replicas<-2
+# 👉 Replica filtering mode:
+# Options: "Treatment" or "Total"
+replica_mode <- "Treatment"
 
-##All in one:
-#Name of files per condition:
-Subjected_File<-'NPQv1_SoHL_08-08-25_CSMsCSVcomma_consensus1_matched_psms'
-Format<-'.csv'
+# 👉 Minimum number of replicas required
+min_replicas <- 2
 
-# Name of files per condition:
+# =======================
+# 📄 File Naming
+# =======================
+
+# 👉 Base filename (without extension)
+base_filename <- "example_crosslink_file"
+
+# 👉 File format (e.g., ".csv", ".txt")
+file_format <- ".csv"
+
+# 👉 File suffix (if applicable, e.g. raw data tag)
+file_suffix <- ".raw"
+
+# =======================
+# 🧪 Treatment Groups
+# =======================
+
+# 👉 Define your experimental conditions and replicates
 treatment_groups <- list(
-  "NPQ_00-05" = c("Xpl1_010533", "Xpl1_010586", "Xpl1_010587"),
-  "NPQ_05-10" = c("Xpl1_010535", "Xpl1_010577", "Xpl1_010578"),
-  "NPQ_10-15" = c("Xpl1_010536", "Xpl1_010580", "Xpl1_010581"),
-  "NPQ_15-20" = c("Xpl1_010538", "Xpl1_010583", "Xpl1_010584"))
-
-#End of the files names:
+  "Condition_1" = c("replicate_1", "replicate_2", "replicate_3"),
+  "Condition_2" = c("replicate_4", "replicate_5", "replicate_6"),
+  "Condition_3" = c("replicate_7", "replicate_8", "replicate_9"))
+#End of the MS files names:
 File_type<-".raw"
+
+# =======================
+# ✅ Notes
+# =======================
+
+# - Replace all "path/to/..." placeholders with your actual paths
+# - Ensure all required packages are installed before running
+# - Input files should follow consistent naming conventions
+# - Treatment groups must match file identifiers
 
 ###########################################################################################
 #Start of the code:
