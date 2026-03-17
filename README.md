@@ -31,19 +31,6 @@ It enables:
 
 ---
 
-## 📂 Project Structure
-
-```
-project/
-│── data/                  # Input files (crosslink datasets)
-│── database/              # FASTA database
-│── output/                # Generated results
-│── script.R               # Main analysis script
-│── README.md              # Documentation
-```
-
----
-
 ## 🚀 Getting Started
 
 ### 1. Install Requirements
